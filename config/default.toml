@@ -1,0 +1,8 @@
+[server]
+path = "api"
+database_path = "database.db"
+articles_path = "articles"
+
+[commands]
+articles = "articles"
+articles_list = "list"
