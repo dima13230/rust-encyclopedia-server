@@ -90,7 +90,12 @@ async fn listen() -> Result<()> {
     let routes = articles
     .or(article);
 
-    warp::serve(routes).run(([0, 0, 0, 0], 3030)).await;
+    let port = std::env::var("PORT")
+    .ok()
+    .and_then(|s| s.parse().ok())
+    .unwrap_or(3000);
+
+    warp::serve(routes).run(([0, 0, 0, 0], port)).await;
     Ok(())
 }
 
