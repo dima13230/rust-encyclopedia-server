@@ -87,8 +87,14 @@ async fn listen() -> Result<()> {
         article_out(s)
     });
 
+    let cors = warp::cors()
+        .allow_any_origin()
+        .allow_headers(vec!["*"])
+        .allow_methods(vec!["GET"]);
+
     let routes = articles
-    .or(article);
+    .or(article)
+    .with(cors);
 
     let port = std::env::var("PORT")
     .ok()
